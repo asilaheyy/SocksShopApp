@@ -15,6 +15,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.TreeMap;
+
 
 @RestController
 @RequestMapping("/shop")
@@ -78,8 +80,13 @@ public class ShopController {
             )
     })
     public ResponseEntity<Socks> getAllSocks(@RequestParam(required = false) Colour colour,
-                                             @RequestParam(required = false) Integer size) {
-        return null;
+                                             @RequestParam(required = false) Double size) {
+        TreeMap<Integer, Socks> allSocks = shopService.getAllSocks();
+       if (allSocks != null){
+           return ResponseEntity.ok().build();
+       }
+       return ResponseEntity.notFound().build();
+
     }
 
     @PutMapping("/{id}")

@@ -11,6 +11,7 @@ public abstract interface ShopService {
     Socks addSocks(Socks socks);
 
     Socks editSocks(int id, Socks socks);
+    TreeMap<Integer, Socks> getAllSocks();
 
     boolean deleteById(int id);
 }
